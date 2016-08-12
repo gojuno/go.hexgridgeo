@@ -102,11 +102,11 @@ func MakeGrid(orientation hexgrid.Orientation, size float64, projection Projecti
 		projection: projection}
 }
 
-func (grid *Grid) HexToCode(hex hexgrid.Hex) uint64 {
+func (grid *Grid) HexToCode(hex hexgrid.Hex) int64 {
 	return grid.hexgrid.HexToCode(hex)
 }
 
-func (grid *Grid) HexFromCode(code uint64) hexgrid.Hex {
+func (grid *Grid) HexFromCode(code int64) hexgrid.Hex {
 	return grid.hexgrid.HexFromCode(code)
 }
 

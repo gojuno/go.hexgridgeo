@@ -98,7 +98,7 @@ func (projectionSM) PointToGeo(point hexgrid.Point) *geo.Point {
 
 func MakeGrid(orientation hexgrid.Orientation, size float64, projection Projection) *Grid {
 	return &Grid{
-		hexgrid:    hexgrid.MakeGrid(orientation, hexgrid.MakePoint(0, 0), hexgrid.MakePoint(size, size), morton.Make64(2, 31)),
+		hexgrid:    hexgrid.MakeGrid(orientation, hexgrid.MakePoint(0, 0), hexgrid.MakePoint(size, size), morton.Make64(2, 32)),
 		projection: projection}
 }
 

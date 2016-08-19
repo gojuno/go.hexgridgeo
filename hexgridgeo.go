@@ -34,8 +34,8 @@ var ProjectionSin = projectionSin{}
 var ProjectionAEP = projectionAEP{}
 var ProjectionSM = projectionSM{}
 
-var PointyOrientation = hexgrid.PointyOrientation
-var FlatOrientation = hexgrid.FlatOrientation
+var OrientationPointy = hexgrid.OrientationPointy
+var OrientationFlat = hexgrid.OrientationFlat
 
 type Grid struct {
 	hexgrid    *hexgrid.Grid

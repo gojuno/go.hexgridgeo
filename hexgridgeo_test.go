@@ -50,3 +50,15 @@ func TestProjectionSM(t *testing.T) {
 	recodedGeoPoint := ProjectionSM.PointToGeo(point)
 	validateGeoPoint(t, geoPoint, recodedGeoPoint, 0.00001)
 }
+
+func TestSimple(t *testing.T) {
+	grid := MakeGrid(OrientationFlat, 500, ProjectionSM)
+	corners := grid.HexCorners(grid.HexAt(MakePoint(-73.0, 40.0)))
+	expectedCorners := []Point{
+		MakePoint(-72.99485, 39.99877), MakePoint(-72.99710, 40.00175),
+		MakePoint(-73.00159, 40.00175), MakePoint(-73.00384, 39.99877),
+		MakePoint(-73.00159, 39.99579), MakePoint(-72.99710, 39.99579)}
+	for i := 0; i < 6; i++ {
+		validateGeoPoint(t, expectedCorners[i], corners[i], 0.00001)
+	}
+}

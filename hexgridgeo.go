@@ -147,10 +147,19 @@ func (grid *Grid) HexNeighbors(hex hexgrid.Hex, layers int64) []hexgrid.Hex {
 	return grid.hexgrid.HexNeighbors(hex, layers)
 }
 
-func (grid *Grid) MakeRegion(geometry []Point) *hexgrid.Region {
-	points := make([]hexgrid.Point, len(geometry))
-	for i := 0; i < len(geometry); i++ {
-		points[i] = grid.projection.GeoToPoint(geometry[i])
+func (grid *Grid) MakeRegionFromMultiPolygon(geometry [][]Point) *hexgrid.Region {
+	points := make([][]hexgrid.Point, len(geometry))
+	for g := 0; g < len(geometry); g++ {
+		points[g] = make([]hexgrid.Point, len(geometry[g]))
+		for i := 0; i < len(geometry[g]); i++ {
+			points[g][i] = grid.projection.GeoToPoint(geometry[g][i])
+		}
 	}
-	return grid.hexgrid.MakeRegion(points)
+	return grid.hexgrid.MakeRegionFromMultiPolygon(points)
+}
+
+func (grid *Grid) MakeRegion(geometry []Point) *hexgrid.Region {
+	mgeometry := make([][]Point, 1)
+	mgeometry[0] = geometry
+	return grid.MakeRegionFromMultiPolygon(mgeometry)
 }
